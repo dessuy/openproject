@@ -37,7 +37,7 @@ module Api
       before_filter :check_project_exists
 
       def index
-        @types = (@project.nil?) ? Type.all : @project.types
+        @types = (@project.nil?) ? Type.includes(:color).all : @project.types.includes(:color)
 
         respond_to do |format|
           format.api
